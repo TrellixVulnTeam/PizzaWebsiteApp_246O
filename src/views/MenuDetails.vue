@@ -13,7 +13,8 @@
       <div class="pizzaname">
           <div class="pizzaname2">
           <h2> {{ menu.pizzaname }} </h2>
-                <p> {{ menu.ingredients }} </p>    
+                <p> {{ menu.ingredients }} </p>   
+              
           </div>
     <div class="pizzasize">
           <p> {{ menu.cm30price }} </p>

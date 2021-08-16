@@ -1,36 +1,39 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import NotFound from '../views/jobs/NotFound.vue'
 import Home from '../views/Home.vue'
-import Promotions from '../views/jobs/Promotions.vue'
-import Contact from '../views/Contact.vue'
 import Menu from '../views/Menu.vue'
 import CartDetails from '../components/CartDetails.vue'
+import Reservation from '../views/Reservation.vue'
+import Cart from '../views/Cart.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home,
-   
+  },
+  {
+    path: '/Reservation',
+    name: 'Reservation',
+    component: Reservation
   },
 
-    {
-    path: '/Contact',
-    name: 'Contact',
-    component: Contact
+  {
+    path: '/CartDetails',
+    name: 'CartDetails',
+    component: CartDetails
   },
-
   {
     path: '/Menu',
     name: 'Menu',
     component: Menu
   },
-
   {
-    path: '/Promotions',
-    name: 'Promotions',
-    component: Promotions
+    path: '/Cart',
+    name: 'Cart',
+    component: Cart
   },
+
 
   // catch 404
   {
