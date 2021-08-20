@@ -1,32 +1,32 @@
 <template>
-<div class="main">
-      <header class="non-scrollable">
+  <div class="main">
+    <header class="non-scrollable">
       <h1>In Cart</h1>
+        <router-link :to="{ name: 'Cart' }">Next</router-link>
       <button>
         <router-link :to="{ name: 'Home' }">
           buttonback
         </router-link>
       </button>
     </header>
-  <div class="container scrollable">
+    <div class="container scrollable">
+      <div class="pizzaParametrs ">
+        <h4>Name</h4>
+        <h4>ingredients</h4>
+        <h4>Quantity</h4>
+        <h4>Price</h4>
+      </div>
 
-    <div class="pizzaParametrs ">
-      <h4>Name</h4>
-      <h4>ingredients</h4>
-      <h4>Quantity</h4>
-      <h4>Price</h4>
+      <div
+        class="addedPizzaInformation"
+        v-for="selected in cart"
+        :key="selected.id"
+      >
+        <p>{{ selected }}</p>
+      </div>
+    
     </div>
-
-    <div
-      class="addedPizzaInformation"
-      v-for="selected in cart"
-      :key="selected.id"
-    >
-      <p>{{ selected }}</p>
-    </div>
-    <router-link :to="{ name: 'Cart' }">Next</router-link>
   </div>
-</div>
 </template>
 <script>
 export default {
@@ -50,26 +50,29 @@ export default {
 @import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
 
 .main {
-  width: 100%;
   text-align: center;
-  
+  justify-content: center;
+  margin: 40px auto;
+  width: 80%;
+  border:2vh solid transparent;
+
 }
 .container {
-  max-width: 920px;
-  height: 500px;
+  width: 920px;
+  height: 450px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   display: inline-block;
   background: #555;
-  border-radius: 15px;
   box-shadow: 3px 3px 0 black;
-
-  .menu {
-    display: flex;
-  }
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .container > :not(.scrollable):not(.non-scrollable) {
   flex-shrink: 0;
 }
-.container > .scrollable, .non-scrollable {
+.container > .scrollable,
+.non-scrollable {
   flex-grow: 1;
 }
 .non-scrollable {
@@ -79,18 +82,30 @@ export default {
 .scrollable {
   overflow: auto;
 }
-.light::-webkit-scrollbar {
-  width: 15px;
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #6d6d6d; 
+}
 header {
   max-width: 920px;
-
-  height: 60px;
   margin: auto;
+ box-shadow: 3px 3px 0 black;
+  height: 60px;
   background: orange;
-   border-radius: 5px;
   padding: 10px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 
   h1 {
     width: 100%;
@@ -113,26 +128,29 @@ header {
 }
 .pizzaParametrs {
   display: flex;
+  margin-left: 20px;
 
   h4 {
-    margin: 10px 75px;
+    margin: 10px 78px;
   }
 }
 .addedPizzaInformation {
   display: inline-flex;
+  border-bottom: 2px solid grey;
+
 
   p {
-    margin: 10px 40px;
+    
+    margin: 10px 40px auto;
     font-size: 20px;
     color: #dddddd;
     font-family: monospace;
     max-width: 15ch;
     padding: 5px;
-    width: calc(13em * 0.5);;
-    border: 2px solid black;
-    height: 100px;
-    word-wrap: break-word;
+    width: calc(13em * 0.5);
  
+    height: 140px;
+    word-wrap: break-word;
   }
 }
 i {
