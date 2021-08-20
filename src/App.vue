@@ -36,7 +36,8 @@ cart:[],
   box-sizing: border-box;
 }
 body {
-  background: url(./assets/pizza.jpg);
+  background: seagreen;
+ //background: url(./assets/pizza.jpg);
   background-size: cover;
 }
 

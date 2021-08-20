@@ -3,9 +3,7 @@
     <header>
       <h1>
         Classic pizza
-        <p>sasaasa {{ selected }}</p>
       </h1>
-
       <div class="psize">
         <p>30cm</p>
         <p>40cm</p>
@@ -53,14 +51,12 @@ export default {
       menus: [
         {
           pizzaname: "Margaritta",
-          ingredients: "tomato-souce,paprika,onion",
+          ingredients: "tomato,souce,paprika,onion",
           cm30price: 19,
           cm40price: 26,
           cm50price: 39,
           id: 1321,
           quantity: 0,
-          full30size: this.cm30price + "misio",
-          selected: this.selected,
         },
         {
           pizzaname: "Matador",
@@ -119,17 +115,16 @@ export default {
 @import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
 
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 920px;
   height: 500px;
   margin: 40px auto;
   background: #555;
   border-radius: 15px;
   box-shadow: 3px 3px 0 black;
-
-  .menu {
-    display: flex;
-  }
 }
+
 
 .selectSize {
   width: 20px;

@@ -1,79 +1,63 @@
 <template>
-  <div class="container">
-    <header>
+<div class="main">
+      <header class="non-scrollable">
       <h1>In Cart</h1>
-      <button> <router-link :to="{ name: 'Home' }">
-      buttonback
-      </router-link></button>
+      <button>
+        <router-link :to="{ name: 'Home' }">
+          buttonback
+        </router-link>
+      </button>
     </header>
-    <div class="pizzaParametrs">
-      <h2>Nr</h2>
-      <h2>Name</h2>
-          <h2>ingredients</h2>
-      <h2>Ilość</h2>
-    </div>
-    <div>
-<tr v-for="(selected,index) in  cart"  :key="index">
+  <div class="container scrollable">
 
-  {{ selected }}
-
- 
-</tr>
+    <div class="pizzaParametrs ">
+      <h4>Name</h4>
+      <h4>ingredients</h4>
+      <h4>Quantity</h4>
+      <h4>Price</h4>
     </div>
-    <tr class="addedPizzaInformation" v-for="(menu, index) in cart" :key="index">
-      <td>{{ index + 1}}</td>
-      <td>{{ menu.quantity }} x {{ menu.pizzaname }}</td>
-      <td style="display: grid;">{{ menu.ingredients }}</td>
-    
-    <button class="minusbutton" v-show="menu.quantity > 0" @click="removeFromCart()">
-      X
-    </button>
-      </tr>
-   <router-link :to="{ name: 'Cart'}">Next</router-link>
+
+    <div
+      class="addedPizzaInformation"
+      v-for="selected in cart"
+      :key="selected.id"
+    >
+      <p>{{ selected }}</p>
+    </div>
+    <router-link :to="{ name: 'Cart' }">Next</router-link>
   </div>
+</div>
 </template>
 <script>
-
 export default {
-  data() {
-    return {
-    }
-  },
   props: {
     cart: Array,
-    optionss: Array,
-    newValue: String,
-    selected: Object,
   },
-
-
 
   methods: {
     back() {
       this.$router.go(-1);
     },
 
-    removeItemFromCart(product) {
-      this.$emit("removeItemFromCart", product);
+    removeItemFromCart(menu) {
+      this.$emit("removeItemFromCart", menu);
     },
-  
   },
-  computed: {
-    changeCart() {
-      this.cart.shift()
-    }
-  }
-  
 };
 </script>
 
 <style lang="scss" scoped>
 @import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
 
+.main {
+  width: 100%;
+  text-align: center;
+  
+}
 .container {
   max-width: 920px;
   height: 500px;
-  margin: 40px auto;
+  display: inline-block;
   background: #555;
   border-radius: 15px;
   box-shadow: 3px 3px 0 black;
@@ -82,12 +66,30 @@ export default {
     display: flex;
   }
 }
+.container > :not(.scrollable):not(.non-scrollable) {
+  flex-shrink: 0;
+}
+.container > .scrollable, .non-scrollable {
+  flex-grow: 1;
+}
+.non-scrollable {
+  overflow: hidden;
+}
+
+.scrollable {
+  overflow: auto;
+}
+.light::-webkit-scrollbar {
+  width: 15px;
+}
+
 header {
-  width: 100%;
+  max-width: 920px;
+
   height: 60px;
+  margin: auto;
   background: orange;
-  border-radius: 5px;
-  display: flex;
+   border-radius: 5px;
   padding: 10px;
 
   h1 {
@@ -112,18 +114,25 @@ header {
 .pizzaParametrs {
   display: flex;
 
-  h2 {
-    margin: 10px 40px
+  h4 {
+    margin: 10px 75px;
   }
 }
 .addedPizzaInformation {
-  display: flex;
+  display: inline-flex;
 
-    td {
+  p {
     margin: 10px 40px;
-      font-size: 30px;
-  color: #dddddd;
-  padding: 5px;
+    font-size: 20px;
+    color: #dddddd;
+    font-family: monospace;
+    max-width: 15ch;
+    padding: 5px;
+    width: calc(13em * 0.5);;
+    border: 2px solid black;
+    height: 100px;
+    word-wrap: break-word;
+ 
   }
 }
 i {

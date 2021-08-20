@@ -3,6 +3,7 @@
     <button @click="navigateTo('cart')" class="cart">
       <p v-for="menu in cart" :key="menu">
         {{ counter }}
+       
       </p>
       <i class="fas fa-shopping-cart"></i>
     </button>
@@ -35,10 +36,12 @@ export default {
     updateCart(menu, selected) {
       if (menu.quantity === 0) {
         menu.quantity += 1;
-        this.cart.push(menu);
+        this.cart.push(menu.pizzaname,menu.ingredients,menu.quantity);
       } else {
         menu.quantity += 1;
+        
       }
+      //Selected function
       if (selected === 421) {
         this.cart.push(menu.cm30price);
       } else if (selected === 422) {
