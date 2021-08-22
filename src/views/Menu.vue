@@ -21,10 +21,10 @@
           <p>{{ menu.cm40price }}</p>
           <p>{{ menu.cm50price }}</p>
 
-          <div class="buttonSelect">
-            <div @change="addItemToCart(menu,selected)">
-              <select v-model="selected" class="form-select">
-                <option disabled selected>Add to Cart</option>
+          <div>
+            <div @change.prevent="addItemToCart(menu,selected)">
+              <select   :value="selected"  class="form-select">
+                <option  value=""  disabled>Add to Cart</option>
                 <option
                   v-for="option in options"
                   :value="option.id"
@@ -47,6 +47,7 @@ export default {
   name: "Menu",
   data() {
     return {
+      mouseover: false,
       selected: "",
       menus: [
         {
@@ -107,6 +108,9 @@ export default {
     addItemToCart(menu,selected) {
       this.$emit("clicked", menu,selected);
     },
+    mouseOver() {
+      this.selected = true
+    }
   },
 };
 </script>
@@ -124,7 +128,9 @@ export default {
   border-radius: 15px;
   box-shadow: 3px 3px 0 black;
 }
-
+.option {
+  padding: 10px;
+}
 
 .selectSize {
   width: 20px;
@@ -199,6 +205,7 @@ p {
 select {
   width: 115px;
   height: 40px;
+  padding: 10px;
   margin: 32px 20px;
   line-height: 25px;
   font-size: 13px;

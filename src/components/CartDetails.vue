@@ -149,7 +149,7 @@ header {
     padding: 5px;
     width: calc(13em * 0.5);
  
-    height: 140px;
+    height: 110px;
     word-wrap: break-word;
   }
 }
