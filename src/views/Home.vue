@@ -3,7 +3,6 @@
     <button @click="navigateTo('cart')" class="cart">
       <p v-for="menu in cart" :key="menu">
         {{ counter }}
-       
       </p>
       <i class="fas fa-shopping-cart"></i>
     </button>
@@ -12,7 +11,7 @@
       <CartDetails :removeItemFromCart="removeItemFromCart" :cart="cart" />
     </div>
     <div v-if="page === 'products'">
-      <Menu @clicked="updateCart" @change="counter += 1" />
+      <Menu @clicked="updateCart" @change="counter += 1"/>
     </div>
   </div>
 </template>
@@ -34,21 +33,31 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
-      if (menu.quantity === 0) {
-        menu.quantity += 1;
-        this.cart.push(menu.pizzaname,menu.ingredients,menu.quantity);
-      } else {
-        menu.quantity += 1;
-        
+      if (selected === 421 && menu.quantity === 0 ) {
+              menu.quantity +=1
+        this.cart.push(menu.pizzaname,menu.ingredients,menu.quantity,menu.cm30price);
       }
-      //Selected function
-      if (selected === 421) {
-        this.cart.push(menu.cm30price);
-      } else if (selected === 422) {
-        this.cart.push(menu.cm40price);
-      } else {
-        this.cart.push(menu.cm50price);
+            else if (selected === 422) {
+
+         this.cart.push(menu.pizzaname,menu.ingredients,menu.quantity,menu.cm40price);
+      } else if (selected === 423) {
+
+         this.cart.push(menu.pizzaname,menu.ingredients,menu.quantity,menu.cm50price);
       }
+      else {
+if (this.cart.includes(menu.quantity)) {
+  function reassign(array, index, newValue) {
+    array[index] = newValue;
+    return array;
+}
+reassign(this.cart, [2], menu.quantity += 1);
+}
+      }
+
+
+ 
+ 
+
     },
 
     navigateTo(page) {
@@ -57,6 +66,21 @@ export default {
     removeItemFromCart(menu) {
       this.cart.splice(this.cart.indexOf(menu), 1);
     },
+
+  },
+  computed: {
+    sumQuantity() {
+      let t = 0;
+      for (let index = 0; index < this.cart.length; index++) {
+        t += this.cart[index].quantity;
+      }
+      return t;
+    },
+        calculateTotal() {
+  return this.menu.cart.reduce((total, menu) => {
+    return total + Number(menu.quantity);
+  }, 0);
+},
   },
 };
 </script>

@@ -23,8 +23,9 @@
         :key="selected.id"
       >
         <p>{{ selected }}</p>
+        
+        
       </div>
-    
     </div>
   </div>
 </template>
@@ -42,6 +43,20 @@ export default {
     removeItemFromCart(menu) {
       this.$emit("removeItemFromCart", menu);
     },
+  },
+    computed: {
+    sumQuantity() {
+      let t = 0;
+      for (let index = 0; index < this.cart.length; index++) {
+        t += this.cart[index].quantity;
+      }
+      return t;
+    },
+        calculateTotal() {
+  return this.menu.cart.reduce((total, menu) => {
+    return total + Number(menu.quantity);
+  }, 0);
+},
   },
 };
 </script>

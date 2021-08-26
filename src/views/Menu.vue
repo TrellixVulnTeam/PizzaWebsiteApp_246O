@@ -23,8 +23,8 @@
 
           <div>
             <div @change.prevent="addItemToCart(menu,selected)">
-              <select   :value="selected"  class="form-select">
-                <option  value=""  disabled>Add to Cart</option>
+              <select   v-model="selected"  class="form-select">
+                <option :value="selected"   disabled>Add to Cart</option>
                 <option
                   v-for="option in options"
                   :value="option.id"
@@ -47,7 +47,7 @@ export default {
   name: "Menu",
   data() {
     return {
-      mouseover: false,
+      model: this.value,
       selected: "",
       menus: [
         {
