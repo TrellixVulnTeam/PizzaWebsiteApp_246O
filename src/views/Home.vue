@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
+
       if (selected === 421 && menu.quantity === 0) {
         menu.quantity += 1;
         this.cart.push(
@@ -41,7 +42,7 @@ export default {
           menu.quantity,
           menu.cm30price
         );
-      } else if (selected === 422 && menu.quantity === 0) {
+      } else if (selected === 422 ) {
         menu.quantity += 1;
         this.cart.push(
           menu.pizzaname,
@@ -58,13 +59,17 @@ export default {
           menu.cm50price
         );
       } else {
-        
-        if (this.cart.includes(menu.cm30price)) {
+      
+        if (this.cart.includes(menu.cm30price) && selected === 421) {
           function reAssign(array, index, newValue) {
             array[index] = newValue;
             return array;
+            
           }
+          
+          if (this.cart.includes(menu.cm30price) && selected === 421) {
           reAssign(this.cart, [2], (menu.quantity += 1));
+          }
         }
         
       }
@@ -77,6 +82,9 @@ export default {
       this.cart.splice(this.cart.indexOf(menu), 1);
     },
   },
+  computed: {
+    
+  }
 };
 </script>
 <style lang="scss" scoped>

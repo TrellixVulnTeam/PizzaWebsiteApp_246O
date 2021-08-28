@@ -20,7 +20,7 @@
       <div
         class="addedPizzaInformation"
         v-for="selected in cart"
-        :key="selected.id"
+        :key="selected"
       >
         <p>{{ selected }}</p>
         
@@ -44,20 +44,7 @@ export default {
       this.$emit("removeItemFromCart", menu);
     },
   },
-    computed: {
-    sumQuantity() {
-      let t = 0;
-      for (let index = 0; index < this.cart.length; index++) {
-        t += this.cart[index].quantity;
-      }
-      return t;
-    },
-        calculateTotal() {
-  return this.menu.cart.reduce((total, menu) => {
-    return total + Number(menu.quantity);
-  }, 0);
-},
-  },
+
 };
 </script>
 
