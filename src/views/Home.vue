@@ -33,24 +33,26 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
+      if (menu.quantity === 0) {
+        menu.quantity += 1;
+        this.cart.push(menu.pizzaname, menu.ingredients, menu.quantity);
+      }
+      if (selected === 421) {
+        if (this.cart.includes(menu.cm30price)) {
+          menu.quantity += 1;
+        } else {
+          this.cart.push(menu.cm30price);
+        }
+      }
 
-      if (selected === 421 && menu.quantity === 0) {
-        menu.quantity += 1;
-        this.cart.push(
-          menu.pizzaname,
-          menu.ingredients,
-          menu.quantity,
-          menu.cm30price
-        );
-      } else if (selected === 422 ) {
-        menu.quantity += 1;
-        this.cart.push(
-          menu.pizzaname,
-          menu.ingredients,
-          menu.quantity,
-          menu.cm40price
-        );
-      } else if (selected === 423) {
+      if (selected === 422) {
+        if (this.cart.includes(cm40price)) {
+          menu.quantity += 1;
+        } else {
+          this.cart.push(menu.cm40price);
+        }
+      }
+      if (selected === 423 && menu.quantity === 0) {
         menu.quantity += 1;
         this.cart.push(
           menu.pizzaname,
@@ -59,19 +61,14 @@ export default {
           menu.cm50price
         );
       } else {
-      
-        if (this.cart.includes(menu.cm30price) && selected === 421) {
+        if (this.cart.includes(menu.quantity)) {
           function reAssign(array, index, newValue) {
             array[index] = newValue;
             return array;
-            
           }
-          
-          if (this.cart.includes(menu.cm30price) && selected === 421) {
+
           reAssign(this.cart, [2], (menu.quantity += 1));
-          }
         }
-        
       }
     },
 
@@ -82,9 +79,7 @@ export default {
       this.cart.splice(this.cart.indexOf(menu), 1);
     },
   },
-  computed: {
-    
-  }
+  computed: {},
 };
 </script>
 <style lang="scss" scoped>
