@@ -6,7 +6,6 @@
       </p>
       <i class="fas fa-shopping-cart"></i>
     </button>
-
     <div v-if="page === 'cart'">
       <CartDetails :removeItemFromCart="removeItemFromCart" :cart="cart" />
     </div>
@@ -33,34 +32,25 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
-      if (menu.quantity === 0) {
-        menu.quantity += 1;
-        this.cart.push(menu.pizzaname, menu.ingredients, menu.quantity);
-      }
-      if (selected === 421) {
-        if (this.cart.includes(menu.cm30price)) {
-          menu.quantity += 1;
-        } else {
-          this.cart.push(menu.cm30price);
+        if (selected === 421 ) {
+          selected = menu.cm30price;
         }
-      }
-
-      if (selected === 422) {
-        if (this.cart.includes(cm40price)) {
-          menu.quantity += 1;
-        } else {
-          this.cart.push(menu.cm40price);
+        if (selected === 422) {
+          selected = menu.cm40price;
         }
-      }
-      if (selected === 423 && menu.quantity === 0) {
+        if (selected === 423) {
+          selected = menu.cm50price;
+        }
+else if (menu.quantity === 0) {
         menu.quantity += 1;
+    
         this.cart.push(
           menu.pizzaname,
           menu.ingredients,
           menu.quantity,
-          menu.cm50price
+          selected
         );
-      } else {
+}
         if (this.cart.includes(menu.quantity)) {
           function reAssign(array, index, newValue) {
             array[index] = newValue;
@@ -68,7 +58,7 @@ export default {
           }
 
           reAssign(this.cart, [2], (menu.quantity += 1));
-        }
+        
       }
     },
 

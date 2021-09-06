@@ -23,8 +23,7 @@
         :key="selected"
       >
         <p>{{ selected }}</p>
-        
-        
+
       </div>
     </div>
   </div>
