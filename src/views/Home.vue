@@ -32,33 +32,48 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
-        if (selected === 421 ) {
-          selected = menu.cm30price;
-        }
-        if (selected === 422) {
-          selected = menu.cm40price;
-        }
-        if (selected === 423) {
-          selected = menu.cm50price;
-        }
-else if (menu.quantity === 0) {
-        menu.quantity += 1;
-    
-        this.cart.push(
-          menu.pizzaname,
-          menu.ingredients,
-          menu.quantity,
-          selected
-        );
-}
-        if (this.cart.includes(menu.quantity)) {
+      if (selected === 421) {
+        selected = menu.cm30price;
+
+        if (!this.cart.includes(menu.cm30price)) {
+          menu.quantity += 1;
+          this.cart.push(
+            menu.pizzaname,
+            menu.ingredients,
+            menu.quantity,
+            selected
+          );
+        } else {
           function reAssign(array, index, newValue) {
             array[index] = newValue;
             return array;
           }
 
           reAssign(this.cart, [2], (menu.quantity += 1));
+        }
+      }
+      if (selected === 422) {
+        selected = menu.cm40price;
+        if (!this.cart.includes(menu.cm40price)) {
+          menu.quantity += 1;
+          this.cart.push(
+            menu.pizzaname,
+            menu.ingredients,
+            menu.quantity,
+            selected
+          );
+        } else {
+          function reAssign1(array, index, newValue) {
+            array[index] = newValue;
+            return array;
+          }
+
+          reAssign1(this.cart, [2], (menu.quantity += 1));
+        }
         
+      }
+      if (selected === 423) {
+        selected = menu.cm50price;
       }
     },
 
