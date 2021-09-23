@@ -26,9 +26,10 @@
               <select   v-model="selected"  class="form-select">
                 <option :value="selected"   disabled>Add to Cart</option>
                 <option
-                  v-for="option in options"
+                  v-for="(option,index) in options"
                   :value="option.id"
-                  :key="option.id"
+                  :key="index"
+                  :reduce="option.id"
                 >
                
                   {{ option.value }}

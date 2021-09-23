@@ -32,15 +32,19 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
+
+
+      
       if (selected === 421) {
         selected = menu.cm30price;
 
         if (!this.cart.includes(menu.cm30price)) {
-          menu.quantity += 1;
+        
+           menu.quantity = 0
           this.cart.push(
             menu.pizzaname,
             menu.ingredients,
-            menu.quantity,
+            menu.quantity += 1,
             selected
           );
         } else {
@@ -54,12 +58,15 @@ export default {
       }
       if (selected === 422) {
         selected = menu.cm40price;
+     
         if (!this.cart.includes(menu.cm40price)) {
-          menu.quantity += 1;
+             menu.quantity = 0
+        
           this.cart.push(
+             
             menu.pizzaname,
             menu.ingredients,
-            menu.quantity,
+         menu.quantity += 1,
             selected
           );
         } else {
