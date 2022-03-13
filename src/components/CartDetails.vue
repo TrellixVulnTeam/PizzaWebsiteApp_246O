@@ -2,7 +2,7 @@
   <div class="main">
     <header class="non-scrollable">
       <h1>In Cart</h1>
-        <router-link :to="{ name: 'Cart' }">Next</router-link>
+      <router-link :to="{ name: 'Cart' }">Next</router-link>
       <button>
         <router-link :to="{ name: 'Home' }">
           buttonback
@@ -23,7 +23,6 @@
         :key="selected"
       >
         <p>{{ selected }}</p>
-
       </div>
     </div>
   </div>
@@ -38,12 +37,14 @@ export default {
     back() {
       this.$router.go(-1);
     },
+    removeItemFromCart(product) {
+      this.cart.splice(this.cart.indexOf(product), 1);
+    },
 
     removeItemFromCart(menu) {
       this.$emit("removeItemFromCart", menu);
     },
   },
-
 };
 </script>
 
@@ -55,8 +56,7 @@ export default {
   justify-content: center;
   margin: 40px auto;
   width: 80%;
-  border:2vh solid transparent;
-
+  border: 2vh solid transparent;
 }
 .container {
   width: 920px;
@@ -84,24 +84,24 @@ export default {
   overflow: auto;
 }
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
- 
+
 ::-webkit-scrollbar-track {
-    background-color: #ebebeb;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: #6d6d6d; 
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d;
 }
 header {
   max-width: 920px;
   margin: auto;
- box-shadow: 3px 3px 0 black;
+  box-shadow: 3px 3px 0 black;
   height: 60px;
   background: orange;
   padding: 10px;
@@ -139,9 +139,7 @@ header {
   display: inline-flex;
   border-bottom: 2px solid grey;
 
-
   p {
-    
     margin: 10px 40px auto;
     font-size: 20px;
     color: #dddddd;
@@ -149,7 +147,7 @@ header {
     max-width: 15ch;
     padding: 5px;
     width: calc(13em * 0.5);
- 
+
     height: 110px;
     word-wrap: break-word;
   }

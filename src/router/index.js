@@ -4,34 +4,34 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home.vue"),
+    component: () => import("../views/Home"),
   },
   {
     path: "/Reservation",
     name: "Reservation",
-    component: () => import("../views/Reservation.vue"),
+    component: () => import("../views/Reservation"),
   },
 
   {
     path: "/CartDetails",
     name: "CartDetails",
-    component: () => import("../components/CartDetails.vue"),
+    component: () => import("../components/CartDetails"),
   },
   {
     path: "/Menu",
     name: "Menu",
-    component: () => import("../views/Menu.vue"),
+    component: () => import("../views/Menu"),
   },
   {
     path: "/Cart",
     name: "Cart",
-    component: () => import("../views/Cart.vue"),
+    component: () => import("../views/Cart"),
   },
 
   {
     path: "/:catchAll(.*)",
     name: "NotFound",
-    component: () => import("../views/NotFound.vue"),
+    component: () => import("../views/NotFound"),
   },
 ];
 
