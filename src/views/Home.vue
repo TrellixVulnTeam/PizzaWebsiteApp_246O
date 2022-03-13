@@ -32,12 +32,15 @@ export default {
   methods: {
     updateCart(menu, selected) {
       switch (selected) {
-        case 421:
+        case selected = 421:
           selected = menu.cm30price;
-        case 422:
+          break;
+        case selected = 422:
           selected = menu.cm40price;
-        case 423:
+          break;
+        case selected = 423:
           selected = menu.cm50price;
+          break;
       }
 
       menu.quantity += 1;
