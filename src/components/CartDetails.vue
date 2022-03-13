@@ -2,28 +2,24 @@
   <div class="main">
     <header class="non-scrollable">
       <h1>In Cart</h1>
+    </header>
+    <div class="container scrollable">
+      <div class="pizzaParametrs ">
+        <h4>Name</h4>
+        <h4 style=" word-wrap: break-word;">ingredients</h4>
+        <h4>Quantity</h4>
+        <h4>Price</h4>
+      </div>
+      <div class="addedPizzaInformation" v-for="(product,index) in cart" :key="index">
+        <p>{{ product }}</p>
+      </div>
+      <button @click="removeItemFromCart(product)">remove</button>
       <router-link :to="{ name: 'Cart' }">Next</router-link>
       <button>
         <router-link :to="{ name: 'Home' }">
           buttonback
         </router-link>
       </button>
-    </header>
-    <div class="container scrollable">
-      <div class="pizzaParametrs ">
-        <h4>Name</h4>
-        <h4>ingredients</h4>
-        <h4>Quantity</h4>
-        <h4>Price</h4>
-      </div>
-
-      <div
-        class="addedPizzaInformation"
-        v-for="selected in cart"
-        :key="selected"
-      >
-        <p>{{ selected }}</p>
-      </div>
     </div>
   </div>
 </template>
@@ -37,12 +33,8 @@ export default {
     back() {
       this.$router.go(-1);
     },
-    removeItemFromCart(product) {
-      this.cart.splice(this.cart.indexOf(product), 1);
-    },
-
-    removeItemFromCart(menu) {
-      this.$emit("removeItemFromCart", menu);
+        removeItemFromCart(product) {
+      this.$emit("removeItemFromCart", product);
     },
   },
 };
@@ -128,6 +120,7 @@ header {
   }
 }
 .pizzaParametrs {
+  word-wrap: break-word;
   display: flex;
   margin-left: 20px;
 

@@ -17,7 +17,6 @@
 <script>
 import Menu from "../views/Menu";
 import CartDetails from "../components/CartDetails";
-
 export default {
   components: {
     Menu,
@@ -32,60 +31,23 @@ export default {
   },
   methods: {
     updateCart(menu, selected) {
-      if (selected === 421) {
-        selected = menu.cm30price;
-
-        if (!this.cart.includes(menu.cm30price)) {
-          menu.quantity = 0;
-          this.cart.push(
-            menu.pizzaname,
-            menu.ingredients,
-            (menu.quantity += 1),
-            selected
-          );
-        } else {
-          function reAssign(array, index, newValue) {
-            array[index] = newValue;
-            return array;
-          }
-
-          reAssign(this.cart, [2], (menu.quantity += 1));
-        }
+      switch (selected) {
+        case 421:
+          selected = menu.cm30price;
+        case 422:
+          selected = menu.cm40price;
+        case 423:
+          selected = menu.cm50price;
       }
-      if (selected === 422) {
-        selected = menu.cm40price;
 
-        if (!this.cart.includes(menu.cm40price)) {
-          menu.quantity = 0;
-
-          this.cart.push(
-            menu.pizzaname,
-            menu.ingredients,
-            (menu.quantity += 1),
-            selected
-          );
-        } else {
-          function reAssign1(array, index, newValue) {
-            array[index] = newValue;
-            return array;
-          }
-
-          reAssign1(this.cart, [2], (menu.quantity += 1));
-        }
-      }
-      if (selected === 423) {
-        selected = menu.cm50price;
-      }
+      menu.quantity += 1;
+      this.cart.push(menu.pizzaname, menu.ingredients, menu.quantity, selected);
     },
 
     navigateTo(page) {
       this.page = page;
     },
-    removeItemFromCart(menu) {
-      this.cart.splice(this.cart.indexOf(menu), 1);
-    },
   },
-  computed: {},
 };
 </script>
 <style lang="scss" scoped>

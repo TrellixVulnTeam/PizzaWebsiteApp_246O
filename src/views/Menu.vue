@@ -20,27 +20,24 @@
           <p>{{ menu.cm30price }}</p>
           <p>{{ menu.cm40price }}</p>
           <p>{{ menu.cm50price }}</p>
-
-          <div>
-            <div @change.prevent="addItemToCart(menu,selected)">
-              <select   v-model="selected"  class="form-select">
-                <option :value="selected"   disabled>Add to Cart</option>
-                <option
-                  v-for="(option,index) in options"
-                  :value="option.id"
-                  :key="index"
-                  :reduce="option.id"
-                >
-               
-                  {{ option.value }}
-                </option>
-              </select>
-            </div>
+        </div>
+        <div>
+          <div @change="addItemToCart(menu, selected)">
+            <select v-model="selected" class="form-select">
+              <option :value="selected" disabled>Add to Cart</option>
+              <option
+                v-for="(option, index) in options"
+                :value="option.id"
+                :key="index"
+                :reduce="option.id"
+              >
+                {{ option.value }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
     </div>
-    <div></div>
   </div>
 </template>
 <script>
@@ -48,7 +45,6 @@ export default {
   name: "Menu",
   data() {
     return {
-      model: this.value,
       selected: "",
       menus: [
         {
@@ -106,12 +102,9 @@ export default {
   },
 
   methods: {
-    addItemToCart(menu,selected) {
-      this.$emit("clicked", menu,selected);
+    addItemToCart(menu, selected) {
+      this.$emit("clicked", menu, selected);
     },
-    mouseOver() {
-      this.selected = true
-    }
   },
 };
 </script>
