@@ -1,51 +1,43 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import NotFound from '../views/jobs/NotFound.vue'
-import Home from '../views/Home.vue'
-import Menu from '../views/Menu.vue'
-import CartDetails from '../components/CartDetails.vue'
-import Reservation from '../views/Reservation.vue'
-import Cart from '../views/Cart.vue'
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: "/",
+    name: "Home",
+    component: () => import("../views/Home.vue"),
   },
   {
-    path: '/Reservation',
-    name: 'Reservation',
-    component: Reservation
+    path: "/Reservation",
+    name: "Reservation",
+    component: () => import("../views/Reservation.vue"),
+  },
+
+  {
+    path: "/CartDetails",
+    name: "CartDetails",
+    component: () => import("../components/CartDetails.vue"),
+  },
+  {
+    path: "/Menu",
+    name: "Menu",
+    component: () => import("../views/Menu.vue"),
+  },
+  {
+    path: "/Cart",
+    name: "Cart",
+    component: () => import("../views/Cart.vue"),
   },
 
   {
-    path: '/CartDetails',
-    name: 'CartDetails',
-    component: CartDetails
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: () => import("../views/NotFound.vue"),
   },
-  {
-    path: '/Menu',
-    name: 'Menu',
-    component: Menu
-  },
-  {
-    path: '/Cart',
-    name: 'Cart',
-    component: Cart
-  },
-
-
-  // catch 404
-  {
-    path: '/:catchAll(.*)',
-    name: 'NotFound',
-    component: NotFound
-  }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
