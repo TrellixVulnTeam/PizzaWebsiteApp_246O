@@ -6,12 +6,17 @@
     <div class="container scrollable">
       <div class="pizzaParametrs ">
         <h4>Name</h4>
-        <h4 style=" word-wrap: break-word;">ingredients</h4>
+        <h4>ingredients</h4>
         <h4>Quantity</h4>
         <h4>Price</h4>
       </div>
-      <div class="addedPizzaInformation" v-for="(product,index) in cart" :key="index">
-        <p>{{ product }}</p>
+      <div class="addedPizzaInformation" v-for="(menu,selected,index) in cart" :key="index">
+        <p>{{ menu.pizzaname }}</p>
+        <p>{{ menu.ingredients }}</p>
+        <p>{{ menu.quantity }}</p>
+        {{selece}}
+        <p v-if="selected = 421">{{ menu.cm30price }}</p>
+        <p v-else-if="selected = 422">{{ menu.cm40price }}</p>
       </div>
       <button @click="removeItemFromCart(product)">remove</button>
       <router-link :to="{ name: 'Cart' }">Next</router-link>
@@ -35,6 +40,15 @@ export default {
     },
         removeItemFromCart(product) {
       this.$emit("removeItemFromCart", product);
+    },
+  },
+    computed: {
+    sumQuantity() {
+      let t = 0;
+      for (let index = 0; index < this.menu.length; index++) {
+        t += this.menu[index].quantity;
+      }
+      return t;
     },
   },
 };

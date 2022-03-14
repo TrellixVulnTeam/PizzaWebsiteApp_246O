@@ -32,19 +32,24 @@ export default {
   methods: {
     updateCart(menu, selected) {
       switch (selected) {
-        case selected = 421:
+        case (selected = 421):
           selected = menu.cm30price;
           break;
-        case selected = 422:
+        case (selected = 422):
           selected = menu.cm40price;
           break;
-        case selected = 423:
+        case (selected = 423):
           selected = menu.cm50price;
           break;
       }
 
-      menu.quantity += 1;
-      this.cart.push(menu.pizzaname, menu.ingredients, menu.quantity, selected);
+      if (!this.cart.includes(menu.cm30price)) {
+        ++menu.quantity;
+        this.cart.push(menu, selected);
+      } else {
+        menu.quantity += 1;
+      }
+      return selected
     },
 
     navigateTo(page) {
