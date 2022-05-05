@@ -4,22 +4,22 @@
       <h1>In Cart</h1>
     </header>
     <div class="container scrollable">
+           {{cart}}
       <div class="pizzaParametrs ">
         <h4>Name</h4>
         <h4>ingredients</h4>
         <h4>Quantity</h4>
         <h4>Price</h4>
       </div>
-      <div class="addedPizzaInformation" v-for="(menu,selected,index) in cart" :key="index">
+      <div class="addedPizzaInformation" v-for="(menu,selected) in cart" :key="selected">
         <p>{{ menu.pizzaname }}</p>
         <p>{{ menu.ingredients }}</p>
         <p>{{ menu.quantity }}</p>
-        {{selece}}
-        <p v-if="selected = 421">{{ menu.cm30price }}</p>
-        <p v-else-if="selected = 422">{{ menu.cm40price }}</p>
+
       </div>
       <button @click="removeItemFromCart(product)">remove</button>
       <router-link :to="{ name: 'Cart' }">Next</router-link>
+ 
       <button>
         <router-link :to="{ name: 'Home' }">
           buttonback

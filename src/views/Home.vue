@@ -45,11 +45,15 @@ export default {
 
       if (!this.cart.includes(menu.cm30price)) {
         ++menu.quantity;
-        this.cart.push(menu, selected);
+        this.cart.push(
+          menu.pizzaname,
+          menu.ingredients,
+          menu.quantity,
+          selected
+        );
       } else {
-        menu.quantity += 1;
+        ++menu.quantity;
       }
-      return selected
     },
 
     navigateTo(page) {
